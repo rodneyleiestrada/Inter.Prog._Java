@@ -1,0 +1,89 @@
+import java.lang.Math;
+
+public class Circle2D {
+
+    double x, y, radius;
+
+    // default (0,0), 1 for radius
+    public Circle2D() {
+        this.x = 0;
+        this.y = 0;
+        this.radius = 1;
+    }
+
+    // constructor x, y, radius
+    public Circle2D(double x, double y, double radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    // method: getter x
+    public double getX() {
+        return this.x;
+    }
+
+    // method: getter y
+    public double getY() {
+        return this.y;
+    }
+
+    // method: getter radius
+    public double getRadius() {
+        return this.radius;
+    }
+
+    // method getArea()
+    public double getArea() {
+        return Math.PI * (Math.pow(this.radius, 2));
+    }
+
+    // method getPerimeter()
+    public double getPerimeter() {
+        return 2 * Math.PI * this.radius;
+    }
+
+    // method: distance sub_method
+    public double getDistance(double x, double y) {
+        return Math.sqrt( Math.pow( (x - this.x),  2 ) + (Math.pow( (y - this.y), 2) ) );
+    }
+
+    // method parameter (double x, double y) return boolean if the
+    // point inside the circle
+    public boolean containsPoint(double x, double y) {
+        return getDistance(x, y) <= this.radius;
+    }
+
+    // method parameter (Circle2D circle) return boolean if the circle
+    // is inside the circle
+    public boolean contains(Circle2D circle) {
+        return getDistance(circle.x, circle.y) + this.radius <= circle.radius;
+    }
+
+    // method overlaps(Circle2D circle) return boolean if the specified
+    // circle overlaps with this circle
+    public boolean overlaps(Circle2D circle) {
+        return !(contains(circle));
+    }
+
+    public static void main(String[] args) {
+        Circle2D c1 = new Circle2D(2, 2, 5.5);
+        Circle2D c2 = new Circle2D(4, 5, 10.5);
+        Circle2D c3 = new Circle2D(3, 5, 2.3);
+
+
+        System.out.println(c1.getX()); // get X
+        System.out.println(c1.getY()); // get Y
+        System.out.println(c1.getRadius()); // get Radius
+
+        System.out.println(c1.getArea()); // given_object: get area
+        System.out.println(c2.getPerimeter()); // given_object: get perimeter
+
+        System.out.println(c1.containsPoint(3, 3)); // given double x, y: if point inside the circle
+        System.out.println(c1.contains(c2)); // given_object circle: if circle is inside given_object
+        System.out.println(c1.overlaps(c3)); // given_object: if circle overlaps given_object
+
+    }
+
+
+}
