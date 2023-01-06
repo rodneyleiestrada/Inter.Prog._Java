@@ -1,0 +1,31 @@
+public class MyPoint {
+    private double x;   // initialize of x, y
+    private double y;
+
+    public MyPoint() {  // default value for x,y = 0,0
+        x = 0;
+        y = 0;
+    }
+
+    public MyPoint(double x, double y) {    // constructor for x, y
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() {  // getter: x
+        return x;
+    }
+
+    public double getY() {  // getter: y
+        return y;
+    }
+
+    public double distance(double x, double y) {    // method: calculates distance given by x,y
+        return Math.sqrt(Math.pow(this.x - x, 2) + Math.pow(this.y - y, 2));
+    }
+
+    public double distance(MyPoint point) {     // method: calculate distance given by a object
+        return distance(point.x, point.y);
+    }
+
+}
