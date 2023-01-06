@@ -1,0 +1,162 @@
+public class MyRectangle2D {
+
+    double x, y, width, height;
+
+    // default: x,y = 0,0 ; width & height = 1
+    public MyRectangle2D() {
+        this.x = 0;
+        this.y = 0;
+        this.width = 1;
+        this.height = 1;
+    }
+
+    // constructor: x, y, width, height
+    public MyRectangle2D(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    // getter: x
+    public double getX() {
+        return this.x;
+    }
+
+    // getter: y
+    public double getY() {
+        return this.y;
+    }
+
+    // getter: width
+    public double getWidth() {
+        return this.width;
+    }
+
+    // getter: height
+    public double getHeight() {
+        return this.height;
+    }
+
+    // setter: x
+    public void setX(double newX) {
+        this.x = newX;
+    }
+
+    // setter: y
+    public void setY(double newY) {
+        this.y = newY;
+    }
+
+    // setter: width
+    public void setWidth(double newWidth) {
+        this.width = newWidth;
+    }
+
+    // setter: height
+    public void setHeight(double newHeight) {
+        this.height = newHeight;
+    }
+
+    // method: getArea
+    public double getArea() {
+        return getWidth() * getHeight();
+    }
+
+    // method: getPerimeter
+    public double getPerimeter() {
+        return ( getWidth() * 2 ) + ( getHeight() * 2 );
+    }
+
+    // sub_method: get x1
+    public double getX1() {
+        if (getWidth() % 2 == 0) {
+            return this.x + ( getWidth()/2 );
+        } else {
+            return this.x + ( ( getWidth()/2 ) + 0.5 );
+        }
+    }
+
+    // sub_method: get x2
+    public double getX2() {
+        if (getWidth() % 2 == 0) {
+            return this.x - ( getWidth()/2 );
+        } else {
+            return this.x - ( ( getWidth()/2 ) + 0.5 );
+        }
+    }
+
+    // sub_method: get y1
+    public double getY1() {
+        if (getHeight() % 2 == 0) {
+            return this.y + ( getHeight()/2 );
+        } else {
+            return this.y + ( ( getHeight()/2 ) + 0.5 );
+        }
+    }
+
+    // sub_method: get y2
+    public double getY2() {
+        if (getHeight() % 2 == 0) {
+            return this.y - ( getHeight()/2 );
+        } else {
+            return this.y - ( ( getHeight()/2 ) + 0.5 );
+        }
+    }
+
+    // method(boolean): if a point coordinate lies inside a rectangle
+    public boolean containsPoint(double x, double y) {
+        boolean x_inside = false;
+        boolean y_inside = false;
+
+        if ( ( getX1() > x ) && ( getX2() < x ) ) {
+            x_inside = true;
+        }
+
+        if ( ( getY1() > y ) && ( getY2() < y ) ) {
+            y_inside = true;
+        }
+
+        if (x_inside == y_inside) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean contains(MyRectangle2D r) {
+        boolean x_inside = false;
+        boolean y_inside = false;
+
+        if ( ( getX1() >= r.getX1() ) && ( getX2() <= r.getX2() ) ) {
+            x_inside = true;
+        }
+
+        if ( ( getY1() >= r.getY1() ) && ( getY2() <= r.getY2() ) ) {
+            y_inside = true;
+        }
+
+        if (x_inside == y_inside) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean overlaps(MyRectangle2D r) {
+        return !contains(r);
+    }
+
+
+    public static void main(String[] args) {
+        MyRectangle2D r1 = new MyRectangle2D(2, 2, 5.5, 4.9);
+        MyRectangle2D r2 = new MyRectangle2D(4, 5, 10.5, 3.2);
+        MyRectangle2D r3 = new MyRectangle2D(3, 5, 2.3, 5.4);
+
+
+        System.out.println(r1.getArea());
+        System.out.println(r1.getPerimeter());
+        System.out.println(r1.containsPoint(3, 2));
+        System.out.println(r1.contains(r2));
+        System.out.println(r1.overlaps(r3));
+
+    }
+}
